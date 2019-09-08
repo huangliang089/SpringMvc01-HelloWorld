@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+
+  <servlet>
+  	<servlet-name>SpringMVC</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<init-param>
+  		<param-name>contextConfigLocation</param-name>
+  		<!-- 只要在src/main/resources下面的文件都加上classpath: -->
+  		<param-value>classpath:spring.xml</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>SpringMVC</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  <!--  	
+  	说明：在<servlet-name>中的名称，只要求对应，且在当前web.xml中与其它的配置名称不冲突
+  	即可，常用名称可以是SpringMVC或DispatcherServlet等等，<servlet-class>中的值就是
+  	DispatcherServlet的包名+类名的全名，由于在Spring MVC的工作流程中，是希望DispatcherServlet
+  	处理所有的请求，所以，<url-pattern>的配置值应该是*.do，同时，后续的所有请求都应该是
+  	以.do结尾的资源，例如登录可能是login.do，而注册可以是reg.do等等。
+  	至此，所有*.do请求都会被DispatcherServlet接收得到，为了保证这个DispatcherServlet
+  	是Tomcat启动时就已经加载并不会反复创建，所以为它添加<load-on-startup>的配置，
+  	注意<load-on-startup>1</load-on-startup>要放在<servlet>标签内部的最后面，否则报错
+   -->
+  
+</web-app>
